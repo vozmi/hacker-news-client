@@ -20,6 +20,10 @@ export interface Comment {
     type: string;
 }
 
+export interface IApiClientConfiguration {
+    base: string;
+}
+
 /**
  * HackerNews API Client
  */
