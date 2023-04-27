@@ -1,3 +1,4 @@
+import { MOCK_STORY_ID } from "@/mocks/hackernews_handlers";
 import { ApiClient } from "../api_client";
 
 describe("getTopStories", () => {
@@ -39,13 +40,13 @@ describe("getStory", () => {
     });
 
     it("Should be with given id", async () => {
-        const story = await api.getStory(123);
+        const story = await api.getStory(MOCK_STORY_ID);
 
-        expect(story.id).toBe(123);
+        expect(story.id).toBe(MOCK_STORY_ID);
     });
 
     it("Should contain Story keys", async () => {
-        const story = await api.getStory(123);
+        const story = await api.getStory(MOCK_STORY_ID);
 
         const storyKeys = [
             "id",
