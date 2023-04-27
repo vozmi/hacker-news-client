@@ -1,4 +1,10 @@
-import { Comment, IApiClient, IApiClientConfiguration, Item, Story } from "./api_client.types";
+import {
+    Comment,
+    IApiClient,
+    IApiClientConfiguration,
+    Item,
+    Story,
+} from "./api_client.types";
 
 export class ApiClient implements IApiClient {
     base: string;
@@ -10,7 +16,7 @@ export class ApiClient implements IApiClient {
     async getTopStories(): Promise<Story[]> {
         const response = await fetch(`${this.base}/topstories.json`);
         const data = await response.json();
-        return data; 
+        return data;
     }
 
     private async _getItem(id: number): Promise<Item> {
@@ -38,5 +44,4 @@ export class ApiClient implements IApiClient {
 
         return item as Comment;
     }
-    
 }

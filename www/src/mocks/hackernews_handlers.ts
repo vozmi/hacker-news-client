@@ -8,12 +8,12 @@ const createMockStory = (id?: number): Story => {
         id: id ?? 8863,
         by: "dhouston",
         descendants: 71,
-        kids: [ 8952, 9224, 8917 ],
+        kids: [8952, 9224, 8917],
         score: 111,
         time: 1175714200,
         title: "My YC app: Dropbox - Throw away your USB drive",
         type: "story",
-        url: "http://www.getdropbox.com/u/2/screencast.html"
+        url: "http://www.getdropbox.com/u/2/screencast.html",
     };
 };
 
@@ -26,5 +26,5 @@ export const hackernewsHandlers = [
         }
 
         return res(ctx.json(data));
-    })
+    }),
 ];

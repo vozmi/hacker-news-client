@@ -8,7 +8,9 @@ afterEach(() => hackernewsServer.resetHandlers());
 afterAll(() => hackernewsServer.close());
 
 describe("topStories", () => {
-    const api = new ApiClient({ base: "https://hacker-news.firebaseio.com/v0" });
+    const api = new ApiClient({
+        base: "https://hacker-news.firebaseio.com/v0",
+    });
 
     it("getsTopStories", async () => {
         const topStories = await api.getTopStories();
