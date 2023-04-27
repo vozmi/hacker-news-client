@@ -1,11 +1,4 @@
 import { ApiClient } from "../api_client";
-import { hackernewsServer } from "@/mocks/hackernews_server";
-
-beforeAll(() => hackernewsServer.listen());
-
-afterEach(() => hackernewsServer.resetHandlers());
-
-afterAll(() => hackernewsServer.close());
 
 describe("topStories", () => {
     const api = new ApiClient({
