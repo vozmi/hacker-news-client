@@ -4,7 +4,7 @@ export class ApiClient implements IApiClient {
     base: string;
 
     constructor(config: IApiClientConfiguration) {
-        this.base = config.base + "/v0";
+        this.base = config.base;
     }
 
     async getTopStories() {
