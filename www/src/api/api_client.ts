@@ -33,7 +33,7 @@ export class ApiClient implements IApiClient {
         const item = await this._getItem(id);
 
         if (item.type !== "comment") {
-            throw new Error("Api Error: story with given id not found!");
+            throw new Error("Api Error: comment with given id not found!");
         }
 
         return item as Comment;
