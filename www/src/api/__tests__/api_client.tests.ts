@@ -1,4 +1,4 @@
-import { MOCK_STORY_ID } from "@/mocks/hackernews_handlers";
+import { MOCK_COMMENT_ID, MOCK_STORY_ID } from "@/mocks/hackernews_handlers";
 import { ApiClient } from "../api_client";
 
 describe("getTopStories", () => {
@@ -61,5 +61,33 @@ describe("getStory", () => {
         ];
 
         expect(Object.keys(story).sort()).toEqual(storyKeys.sort());
+    });
+});
+
+describe("getComment", () => {
+    const api = new ApiClient({
+        base: "https://hacker-news.firebaseio.com/v0",
+    });
+
+    it("Should be with given id", async () => {
+        const comment = await api.getComment(MOCK_COMMENT_ID);
+
+        expect(comment.id).toBe(MOCK_COMMENT_ID);
+    });
+
+    it("Should contain Comment keys", async () => {
+        const comment = await api.getComment(MOCK_COMMENT_ID);
+
+        const storyKeys = [
+            "id",
+            "by",
+            "kids",
+            "parent",
+            "text",
+            "time",
+            "type",
+        ];
+
+        expect(Object.keys(comment).sort()).toEqual(storyKeys.sort());
     });
 });
