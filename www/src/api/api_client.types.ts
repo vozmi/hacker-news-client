@@ -1,3 +1,9 @@
+type ItemType = "story" | "comment";
+export interface Item {
+    id: number;
+    type: ItemType;
+}
+
 export interface Story {
     id: number;
     by: string;

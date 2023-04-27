@@ -1,4 +1,4 @@
-import { Comment, IApiClient, IApiClientConfiguration, Story } from "./api_client.types";
+import { Comment, IApiClient, IApiClientConfiguration, Item, Story } from "./api_client.types";
 
 export class ApiClient implements IApiClient {
     base: string;
@@ -16,15 +16,27 @@ export class ApiClient implements IApiClient {
     private async getItem(id: number) {
         const response = await fetch(`${this.base}/item/${id}.json`);
         const data = await response.json();
-        return data;
+        return data as Item;
     }
 
-    getStory(id: number): Promise<Story> {
-        throw new Error("Method not implemented.");
+    async getStory(id: number): Promise<Story> {
+        const item = await this.getItem(id);
+
+        if (item.type !== "story") {
+            throw new Error("Api Error: story with given id not found!");
+        }
+
+        return item as Story;
     }
 
-    getComment(id: number): Promise<Comment> {
-        throw new Error("Method not implemented.");
+    async getComment(id: number): Promise<Comment> {
+        const item = await this.getItem(id);
+
+        if (item.type !== "comment") {
+            throw new Error("Api Error: story with given id not found!");
+        }
+
+        return item as Comment;
     }
     
 }
