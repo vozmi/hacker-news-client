@@ -7,16 +7,16 @@ export class ApiClient implements IApiClient {
         this.base = config.base;
     }
 
-    async getTopStories() {
+    async getTopStories(): Promise<Story[]> {
         const response = await fetch(`${this.base}/topstories.json`);
         const data = await response.json();
-        return data;        
+        return data; 
     }
 
-    private async _getItem(id: number) {
+    private async _getItem(id: number): Promise<Item> {
         const response = await fetch(`${this.base}/item/${id}.json`);
         const data = await response.json();
-        return data as Item;
+        return data;
     }
 
     async getStory(id: number): Promise<Story> {
