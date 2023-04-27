@@ -13,14 +13,14 @@ export class ApiClient implements IApiClient {
         return data;        
     }
 
-    private async getItem(id: number) {
+    private async _getItem(id: number) {
         const response = await fetch(`${this.base}/item/${id}.json`);
         const data = await response.json();
         return data as Item;
     }
 
     async getStory(id: number): Promise<Story> {
-        const item = await this.getItem(id);
+        const item = await this._getItem(id);
 
         if (item.type !== "story") {
             throw new Error("Api Error: story with given id not found!");
@@ -30,7 +30,7 @@ export class ApiClient implements IApiClient {
     }
 
     async getComment(id: number): Promise<Comment> {
-        const item = await this.getItem(id);
+        const item = await this._getItem(id);
 
         if (item.type !== "comment") {
             throw new Error("Api Error: story with given id not found!");
