@@ -5,13 +5,18 @@ describe("topStories", () => {
         base: "https://hacker-news.firebaseio.com/v0",
     });
 
-    it("getsTopStories", async () => {
+    it("Should be instance of Array", async () => {
         const topStories = await api.getTopStories();
-
         expect(topStories).toBeInstanceOf(Array);
+    });
 
+    it("Should have length 500", async () => {
+        const topStories = await api.getTopStories();
         expect(topStories.length).toBe(500);
+    });
 
+    it("Should be array of Story objects", async () => {
+        const topStories = await api.getTopStories();
         const storyKeys = [
             "id",
             "by",
