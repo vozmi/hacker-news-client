@@ -1,6 +1,6 @@
 import { ApiClient } from "../api_client";
 
-describe("topStories", () => {
+describe("getTopStories", () => {
     const api = new ApiClient({
         base: "https://hacker-news.firebaseio.com/v0",
     });
@@ -30,5 +30,35 @@ describe("topStories", () => {
         ];
 
         expect(Object.keys(topStories[0]).sort()).toEqual(storyKeys.sort());
+    });
+});
+
+describe("getStory", () => {
+    const api = new ApiClient({
+        base: "https://hacker-news.firebaseio.com/v0",
+    });
+
+    it("Should be with given id", async () => {
+        const story = await api.getStory(123);
+
+        expect(story.id).toBe(123);
+    });
+
+    it("Should contain Story keys", async () => {
+        const story = await api.getStory(123);
+
+        const storyKeys = [
+            "id",
+            "by",
+            "descendants",
+            "kids",
+            "score",
+            "time",
+            "title",
+            "type",
+            "url",
+        ];
+
+        expect(Object.keys(story).sort()).toEqual(storyKeys.sort());
     });
 });

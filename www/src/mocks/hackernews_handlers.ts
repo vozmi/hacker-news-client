@@ -27,4 +27,7 @@ export const hackernewsHandlers = [
 
         return res(ctx.json(data));
     }),
+    rest.get(`${SERVER_URL}/item/:id.json`, (req, res, ctx) => {
+        return res(ctx.json(createMockStory(+req.params.id)));
+    }),
 ];
