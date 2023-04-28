@@ -7,10 +7,10 @@ export const MOCK_COMMENT_ID = 32456782;
 
 const createMockStory = (id?: number): Story => {
     return {
-        id: id ?? 8863,
+        id: id ?? MOCK_STORY_ID,
         by: "dhouston",
         descendants: 71,
-        kids: [8952, 9224, 8917],
+        kids: [MOCK_COMMENT_ID, MOCK_COMMENT_ID, MOCK_COMMENT_ID],
         score: 111,
         time: 1175714200,
         title: "My YC app: Dropbox - Throw away your USB drive",
@@ -21,10 +21,16 @@ const createMockStory = (id?: number): Story => {
 
 const createMockComment = (id?: number): Comment => {
     return {
-        id: id ?? 2921983,
+        id: id ?? MOCK_COMMENT_ID,
         by: "norvig",
-        kids: [2922097, 2922429, 2924562, 2922709, 2922573, 2922140, 2922141],
-        parent: 2921506,
+        kids: [
+            MOCK_COMMENT_ID,
+            MOCK_COMMENT_ID,
+            MOCK_COMMENT_ID,
+            MOCK_COMMENT_ID,
+            MOCK_COMMENT_ID,
+        ],
+        parent: MOCK_STORY_ID,
         text: "Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
         time: 1314211127,
         type: "comment",
