@@ -17,7 +17,16 @@ export class ApiAdapter implements IApiAdapter {
      * @returns array of 500 Story objects
      */
     async getTopStories(): Promise<Story[]> {
-        throw new Error("Method not implemented.");
+        const stories = await this._apiClient.getTopStories();
+        return stories.map((x) => ({
+            id: x.id,
+            author: x.by,
+            title: x.title,
+            url: x.url,
+            score: x.score,
+            createDate: new Date(x.time).toLocaleDateString(),
+            commentsIds: x.kids,
+        }));
     }
 
     /**
@@ -26,7 +35,18 @@ export class ApiAdapter implements IApiAdapter {
      * @returns Story
      */
     async getStory(id: number): Promise<Story> {
-        throw new Error("Method not implemented.");
+        const story = await this._apiClient.getStory(id);
+        const { url, title, score } = story;
+
+        return {
+            id,
+            url,
+            title,
+            score,
+            author: story.by,
+            createDate: new Date(story.time).toLocaleDateString(),
+            commentsIds: story.kids,
+        };
     }
 
     /**
@@ -35,6 +55,15 @@ export class ApiAdapter implements IApiAdapter {
      * @returns Comment
      */
     async getComment(id: number): Promise<Comment> {
-        throw new Error("Method not implemented.");
+        const comment = await this._apiClient.getComment(id);
+
+        return {
+            id: comment.id,
+            author: comment.by,
+            text: comment.text,
+            parentId: comment.parent,
+            createDate: new Date(comment.time).toLocaleDateString(),
+            childrenIds: comment.kids,
+        };
     }
 }

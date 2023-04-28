@@ -26,7 +26,7 @@ describe("getTopStories", () => {
             "url",
             "author",
             "score",
-            "commentsCount",
+            "commentsIds",
             "createDate",
         ];
 
@@ -55,7 +55,7 @@ describe("getStory", () => {
             "url",
             "author",
             "score",
-            "commentsCount",
+            "commentsIds",
             "createDate",
         ];
 
