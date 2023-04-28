@@ -1,4 +1,4 @@
-export interface Story {
+export type Story = {
     id: number;
     title: string;
     url: string;
