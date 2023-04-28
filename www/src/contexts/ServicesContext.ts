@@ -1,7 +1,7 @@
 import { IApiAdapter } from "@/services";
 import React, { useContext } from "react";
 
-type IServicesContext = {
+export type IServicesContext = {
     apiAdapter: IApiAdapter;
 };
 
