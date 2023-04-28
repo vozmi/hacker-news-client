@@ -1,4 +1,4 @@
-import { MOCK_COMMENT_ID, MOCK_STORY_ID } from "@/mocks/hackernews_handlers";
+import { MOCK_COMMENT_ID, MOCK_STORY_ID } from "@/mocks";
 import { ApiClient } from "../api_client";
 
 describe("getTopStories", () => {
