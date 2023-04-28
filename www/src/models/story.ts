@@ -4,6 +4,7 @@ export type Story = {
     url: string;
     author: string;
     score: number;
-    commentsIds: number[];
+    allCommentsCount: number;
+    childCommentIds: number[];
     createDate: string;
 };

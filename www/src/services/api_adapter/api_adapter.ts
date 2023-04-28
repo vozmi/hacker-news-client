@@ -25,7 +25,8 @@ export class ApiAdapter implements IApiAdapter {
             url: x.url,
             score: x.score,
             createDate: new Date(x.time).toLocaleDateString(),
-            commentsIds: x.kids,
+            allCommentsCount: x.descendants,
+            childCommentIds: x.kids,
         }));
     }
 
@@ -45,7 +46,8 @@ export class ApiAdapter implements IApiAdapter {
             score,
             author: story.by,
             createDate: new Date(story.time).toLocaleDateString(),
-            commentsIds: story.kids,
+            allCommentsCount: story.descendants,
+            childCommentIds: story.kids,
         };
     }
 
