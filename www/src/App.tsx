@@ -1,10 +1,10 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { StoriesList } from "./pages";
 import { useEffect, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ApiClient } from "./api";
-import { AppConfig } from "./app.types";
-import { ApiAdapter, IApiAdapter } from "./services";
+import { appConfig } from "./app.config";
 import { ServicesContext } from "./contexts";
+import { StoriesList } from "./pages";
+import { ApiAdapter, IApiAdapter } from "./services";
 
 const App = () => {
     const [apiAdapter, setApiAdapter] = useState<IApiAdapter>();
@@ -14,10 +14,9 @@ const App = () => {
             return;
         }
 
-        const configText = await fetch("/app.config.json");
-        const config: AppConfig = await configText.json();
+        const { hackerNewsApiUrl } = appConfig;
 
-        const apiClient = new ApiClient({ base: config.hackerNewsApiUrl });
+        const apiClient = new ApiClient({ base: hackerNewsApiUrl });
         const adapter = new ApiAdapter(apiClient);
         setApiAdapter(adapter);
     };
