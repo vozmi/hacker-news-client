@@ -5,4 +5,4 @@ export type Comment = {
     author: string;
     createDate: string;
     childrenIds: number[];
-}
+};

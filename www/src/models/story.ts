@@ -6,4 +6,4 @@ export type Story = {
     score: number;
     commentsIds: number[];
     createDate: string;
-}
+};
