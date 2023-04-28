@@ -3,7 +3,7 @@ export interface Story {
     title: string;
     url: string;
     author: string;
-    score: string;
-    commentsCount: string;
+    score: number;
+    commentsIds: number[];
     createDate: string;
 }
