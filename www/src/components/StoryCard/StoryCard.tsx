@@ -4,6 +4,6 @@ type Props = {
     data: Story;
 };
 
-export const StoryCard: React.FC<Props> = (props) => {
-    return <div>StoryCard</div>;
+export const StoryCard: React.FC<Props> = ({ data }) => {
+    return <div data-testid="storycard">{data.title}</div>;
 };
