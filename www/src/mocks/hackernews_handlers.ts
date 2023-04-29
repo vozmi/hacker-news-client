@@ -1,4 +1,5 @@
 import { Comment, Story } from "@/api";
+import { range } from "@/lib";
 import { rest } from "msw";
 
 export const MOCK_SERVER_URL = "https://hacker-news.firebaseio.com/v0";
@@ -39,11 +40,11 @@ export const createMockComment = (id?: number): Comment => {
 
 export const hackernewsHandlers = [
     rest.get(`${MOCK_SERVER_URL}/topstories.json`, (req, res, ctx) => {
-        const data = [];
+        const data: number[] = [];
 
-        for (const _ of Array(500).keys()) {
+        range(0, 500).forEach(() => {
             data.push(MOCK_STORY_ID);
-        }
+        });
 
         return res(ctx.json(data));
     }),
