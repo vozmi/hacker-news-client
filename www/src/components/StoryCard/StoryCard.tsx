@@ -18,28 +18,11 @@ export const StoryCard: React.FC<Props> = ({ data }) => {
                         {data.title}
                     </Typography>
                     <Typography
-                        sx={{ fontSize: 14 }}
+                        sx={{ fontSize: 10 }}
                         data-testid="storycard__author"
                     >
-                        {data.author}
-                    </Typography>
-                    <Typography
-                        sx={{ fontSize: 14 }}
-                        data-testid="storycard__commentsCount"
-                    >
-                        {data.allCommentsCount}
-                    </Typography>
-                    <Typography
-                        sx={{ fontSize: 14 }}
-                        data-testid="storycard__createDate"
-                    >
-                        {data.createDate}
-                    </Typography>
-                    <Typography
-                        sx={{ fontSize: 14 }}
-                        data-testid="storycard__score"
-                    >
-                        {data.score}
+                        {data.score} points | by {data.author} |{" "}
+                        {data.createDate} | {data.allCommentsCount} comments
                     </Typography>
                 </CardContent>
                 <CardContent>
