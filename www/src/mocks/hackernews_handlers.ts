@@ -1,10 +1,11 @@
 import { Comment, Story } from "@/api";
-import { range } from "@/lib";
+import {
+    MOCK_COMMENT_ID,
+    MOCK_SERVER_URL,
+    MOCK_STORY_ID,
+} from "@/lib/constants";
+import { range } from "@/lib/range";
 import { rest } from "msw";
-
-export const MOCK_SERVER_URL = "https://hacker-news.firebaseio.com/v0";
-export const MOCK_STORY_ID = 48765231;
-export const MOCK_COMMENT_ID = 32456782;
 
 export const createMockStory = (id?: number): Story => {
     return {

@@ -1,5 +1,5 @@
 import { ApiClient } from "@/api";
-import { MOCK_SERVER_URL } from "@/mocks";
+import { MOCK_SERVER_URL } from "@/lib/constants";
 import { ApiAdapter } from "@/services";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
