@@ -1,7 +1,7 @@
 import { ApiClient } from "@/api";
 import { ServicesContext } from "@/contexts";
 import { renderWithRouter } from "@/lib/testUtils";
-import { MOCK_SERVER_URL, MOCK_STORY_ID } from "@/lib/constants";
+import { MOCK_SERVER_URL, MOCK_STORY_ID } from "@/constants";
 import { ApiAdapter } from "@/services";
 import { screen, waitFor } from "@testing-library/react";
 import { StoryCardContainer } from "../StoryCardContainer";

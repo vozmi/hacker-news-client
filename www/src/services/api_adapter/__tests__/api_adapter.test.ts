@@ -1,5 +1,5 @@
 import { ApiClient } from "@/api";
-import { MOCK_COMMENT_ID, MOCK_STORY_ID } from "@/lib/constants";
+import { MOCK_COMMENT_ID, MOCK_STORY_ID } from "@/constants";
 import { ApiAdapter } from "../api_adapter";
 
 const api = new ApiClient({
