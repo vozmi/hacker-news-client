@@ -16,13 +16,6 @@ const story: Story = {
     childCommentIds: [32456782, 32456782, 32456782],
 };
 
-// storycard__title
-// storycard__author
-// storycard__url
-// storycard__commentsCount
-// storycard__createDate
-// storycard__score
-
 describe("StoryCard", () => {
     it("Should show main variables (title, author, commentsCount, score, createDate)", async () => {
         render(<StoryCard data={story} />);
