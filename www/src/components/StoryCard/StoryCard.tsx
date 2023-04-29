@@ -11,16 +11,8 @@ export const StoryCard: React.FC<Props> = ({ data }) => {
         <div data-testid="storycard">
             <Card sx={{ maxWidth: 500 }}>
                 <CardContent>
-                    <Typography
-                        sx={{ fontSize: 14 }}
-                        data-testid="storycard__title"
-                    >
-                        {data.title}
-                    </Typography>
-                    <Typography
-                        sx={{ fontSize: 10 }}
-                        data-testid="storycard__author"
-                    >
+                    <Typography sx={{ fontSize: 14 }}>{data.title}</Typography>
+                    <Typography sx={{ fontSize: 10 }}>
                         {data.score} points | by {data.author} |{" "}
                         {data.createDate} | {data.allCommentsCount} comments
                     </Typography>

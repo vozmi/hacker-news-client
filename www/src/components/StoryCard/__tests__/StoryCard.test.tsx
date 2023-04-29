@@ -23,11 +23,6 @@ const story = mapFromHNStory(hnStory);
 
 const TEST_IDS = {
     STORYCARD: "storycard",
-    TITLE: "storycard__title",
-    AUTHOR: "storycard__author",
-    COMMENTS_COUNT: "storycard__commentsCount",
-    SCORE: "storycard__score",
-    CREATE_DATE: "storycard__createDate",
 };
 
 describe("StoryCard", () => {
@@ -36,25 +31,27 @@ describe("StoryCard", () => {
 
         await screen.findByTestId(TEST_IDS.STORYCARD);
 
-        expect(screen.getByTestId(TEST_IDS.TITLE)).toHaveTextContent(
-            story.title
-        );
+        expect(
+            screen.getByText(new RegExp(story.title, "i"))
+        ).toBeInTheDocument();
 
-        expect(screen.getByTestId(TEST_IDS.AUTHOR)).toHaveTextContent(
-            story.author
-        );
+        expect(
+            screen.getByText(new RegExp(story.author, "i"))
+        ).toBeInTheDocument();
 
-        expect(screen.getByTestId(TEST_IDS.COMMENTS_COUNT)).toHaveTextContent(
-            story.allCommentsCount.toString()
-        );
+        expect(
+            screen.getByText(
+                new RegExp(story.allCommentsCount + " comments", "i")
+            )
+        ).toBeInTheDocument();
 
-        expect(screen.getByTestId(TEST_IDS.SCORE)).toHaveTextContent(
-            story.score.toString()
-        );
+        expect(
+            screen.getByText(new RegExp(story.score + " points", "i"))
+        ).toBeInTheDocument();
 
-        expect(screen.getByTestId(TEST_IDS.CREATE_DATE)).toHaveTextContent(
-            story.createDate
-        );
+        expect(
+            screen.getByText(new RegExp(story.createDate, "i"))
+        ).toBeInTheDocument();
     });
 
     it("Should contain link to story page", async () => {
