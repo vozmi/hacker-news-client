@@ -21,15 +21,11 @@ const hnStory = {
 };
 const story = mapFromHNStory(hnStory);
 
-const TEST_IDS = {
-    STORYCARD: "storycard",
-};
-
 describe("StoryCard", () => {
     it("Should show main variables (title, author, commentsCount, score, createDate)", async () => {
         renderWithRouter(<StoryCard data={story} />);
 
-        await screen.findByTestId(TEST_IDS.STORYCARD);
+        await screen.findByLabelText("story");
 
         expect(
             screen.getByText(new RegExp(story.title, "i"))
@@ -67,7 +63,7 @@ describe("StoryCard", () => {
             }
         );
 
-        const cardEl = await screen.findByTestId(TEST_IDS.STORYCARD);
+        const cardEl = await screen.findByLabelText("story");
 
         await user.click(cardEl);
 
