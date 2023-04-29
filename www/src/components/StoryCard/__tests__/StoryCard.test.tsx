@@ -1,9 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import { StoryCard } from "../StoryCard";
-import { ApiAdapter } from "@/services";
-import { ApiClient } from "@/api";
-import { MOCK_SERVER_URL, MOCK_STORY_ID } from "@/mocks";
+import { renderInApp } from "@/lib/testUtils";
 import { Story } from "@/models";
+import { screen } from "@testing-library/react";
+import { StoryCard } from "../StoryCard";
 
 const story: Story = {
     id: 48765231,
@@ -18,7 +16,7 @@ const story: Story = {
 
 describe("StoryCard", () => {
     it("Should show main variables (title, author, commentsCount, score, createDate)", async () => {
-        render(<StoryCard data={story} />);
+        renderInApp(<StoryCard data={story} />);
 
         await screen.findByTestId("storycard");
 
