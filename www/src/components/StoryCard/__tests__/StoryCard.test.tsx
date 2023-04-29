@@ -1,4 +1,4 @@
-import { renderWithRouter } from "@/lib/testUtils";
+import { renderWithRouter } from "@/lib";
 import { mapFromHNStory } from "@/models";
 import { screen } from "@testing-library/react";
 import { Route, Routes } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { ApiClient } from "@/api";
 import { ServicesContext } from "@/contexts";
-import { renderWithRouter } from "@/lib/testUtils";
+import { renderWithRouter } from "@/lib";
 import { MOCK_SERVER_URL, MOCK_STORY_ID } from "@/mocks";
 import { ApiAdapter } from "@/services";
 import { screen, waitFor } from "@testing-library/react";
