@@ -15,11 +15,16 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
 
     const getData = async () => {
         setLoading(true);
-
-        const story = await apiAdapter.getStory(id);
-        setData(story);
-
-        setLoading(false);
+        try {
+            const story = await apiAdapter.getStory(id);
+            setData(story);
+        } catch (error: any) {
+            console.error(
+                "Error during getting StoryCard data: " + error.message
+            );
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
