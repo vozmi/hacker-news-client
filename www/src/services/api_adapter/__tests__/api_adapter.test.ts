@@ -26,7 +26,8 @@ describe("getTopStories", () => {
             "url",
             "author",
             "score",
-            "commentsIds",
+            "allCommentsCount",
+            "childCommentIds",
             "createDate",
         ];
 
@@ -55,7 +56,8 @@ describe("getStory", () => {
             "url",
             "author",
             "score",
-            "commentsIds",
+            "allCommentsCount",
+            "childCommentIds",
             "createDate",
         ];
 

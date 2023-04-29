@@ -19,6 +19,7 @@ module.exports = {
     },
     plugins: ["react", "@typescript-eslint", "jest", "prettier"],
     rules: {
+        "react/prop-types": 0,
         "react/react-in-jsx-scope": "off",
     },
 };

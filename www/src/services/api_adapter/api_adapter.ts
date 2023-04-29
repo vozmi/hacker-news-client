@@ -1,4 +1,4 @@
-import { Story, Comment } from "@/models";
+import { Story, Comment, mapFromHNStory, mapFromHNComment } from "@/models";
 import { IApiAdapter } from "./api_adapter.types";
 import { IApiClient } from "@/api";
 
@@ -18,15 +18,7 @@ export class ApiAdapter implements IApiAdapter {
      */
     async getTopStories(): Promise<Story[]> {
         const stories = await this._apiClient.getTopStories();
-        return stories.map((x) => ({
-            id: x.id,
-            author: x.by,
-            title: x.title,
-            url: x.url,
-            score: x.score,
-            createDate: new Date(x.time).toLocaleDateString(),
-            commentsIds: x.kids,
-        }));
+        return stories.map(mapFromHNStory);
     }
 
     /**
@@ -36,17 +28,8 @@ export class ApiAdapter implements IApiAdapter {
      */
     async getStory(id: number): Promise<Story> {
         const story = await this._apiClient.getStory(id);
-        const { url, title, score } = story;
 
-        return {
-            id,
-            url,
-            title,
-            score,
-            author: story.by,
-            createDate: new Date(story.time).toLocaleDateString(),
-            commentsIds: story.kids,
-        };
+        return mapFromHNStory(story);
     }
 
     /**
@@ -57,13 +40,6 @@ export class ApiAdapter implements IApiAdapter {
     async getComment(id: number): Promise<Comment> {
         const comment = await this._apiClient.getComment(id);
 
-        return {
-            id: comment.id,
-            author: comment.by,
-            text: comment.text,
-            parentId: comment.parent,
-            createDate: new Date(comment.time).toLocaleDateString(),
-            childrenIds: comment.kids,
-        };
+        return mapFromHNComment(comment);
     }
 }

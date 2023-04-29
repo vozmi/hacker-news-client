@@ -1,10 +1,10 @@
 type ItemType = "story" | "comment";
-export interface Item {
+export type Item = {
     id: number;
     type: ItemType;
-}
+};
 
-export interface Story {
+export type Story = {
     id: number;
     by: string;
     descendants: number;
@@ -14,9 +14,9 @@ export interface Story {
     title: string;
     type: string;
     url: string;
-}
+};
 
-export interface Comment {
+export type Comment = {
     by: string;
     id: number;
     kids: number[];
@@ -24,11 +24,11 @@ export interface Comment {
     text: string;
     time: number;
     type: string;
-}
+};
 
-export interface IApiClientConfiguration {
+export type IApiClientConfiguration = {
     base: string;
-}
+};
 
 /**
  * HackerNews API Client
