@@ -1,6 +1,6 @@
 import { Story } from "@/models";
 import { Card, CardContent, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
     data: Story;
@@ -25,9 +25,6 @@ export const StoryCard: React.FC<Props> = ({ data }) => {
                     {data.score} points | by {data.author} | {data.createDate} |{" "}
                     {data.allCommentsCount} comments
                 </Typography>
-            </CardContent>
-            <CardContent>
-                <Link to={`/news/${data.id}`}>Read more</Link>
             </CardContent>
         </Card>
     );
