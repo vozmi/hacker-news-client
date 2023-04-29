@@ -10,7 +10,7 @@ export const StoryCard: React.FC<Props> = ({ data }) => {
     const navigate = useNavigate();
 
     const goToStoryPage = () => {
-        navigate(`/news/${data.id}`);
+        navigate(`/stories/${data.id}`);
     };
 
     return (

@@ -36,10 +36,10 @@ const App = () => {
             }}
         >
             <Routes>
-                <Route path="/news" element={<StoriesList />}>
+                <Route path="/stories" element={<StoriesList />}>
                     <Route path=":id" element={<StoriesList />} />
                 </Route>
-                <Route path="*" element={<Navigate to="/news" />} />
+                <Route path="*" element={<Navigate to="/stories" />} />
             </Routes>
         </ServicesContext.Provider>
     );

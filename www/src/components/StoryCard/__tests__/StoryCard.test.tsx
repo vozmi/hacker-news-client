@@ -57,13 +57,13 @@ describe("StoryCard", () => {
     it("Should contain link to story page", async () => {
         const { user } = renderWithRouter(
             <Routes>
-                <Route path="/news">
+                <Route path="/stories">
                     <Route index element={<StoryCard data={story} />} />
                     <Route path=":id" element={<div>Story page</div>} />
                 </Route>
             </Routes>,
             {
-                route: "/news",
+                route: "/stories",
             }
         );
 
