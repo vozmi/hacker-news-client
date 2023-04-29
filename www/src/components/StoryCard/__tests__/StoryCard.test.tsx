@@ -66,11 +66,10 @@ describe("StoryCard", () => {
                 route: "/news",
             }
         );
-        const linkText = /read more/i;
 
-        const linkEl = await screen.findByText(linkText);
+        const cardEl = await screen.findByTestId(TEST_IDS.STORYCARD);
 
-        await user.click(linkEl);
+        await user.click(cardEl);
 
         expect(screen.getByText(/story page/i)).toBeInTheDocument();
     });
