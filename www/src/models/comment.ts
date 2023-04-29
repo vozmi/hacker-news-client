@@ -15,7 +15,10 @@ export const mapFromHNComment = (comment: HNComment): Comment => {
         author: comment.by,
         text: comment.text,
         parentId: comment.parent,
-        createDate: new Date(comment.time).toLocaleDateString(),
+        createDate:
+            new Date(comment.time).toLocaleDateString() +
+            " at " +
+            new Date(comment.time).toLocaleTimeString(),
         childrenIds: comment.kids,
     };
 };
