@@ -16,9 +16,8 @@ export class ApiAdapter implements IApiAdapter {
      * Get top 500 stories
      * @returns array of 500 Story objects
      */
-    async getTopStories(): Promise<Story[]> {
-        const stories = await this._apiClient.getTopStories();
-        return stories.map(mapFromHNStory);
+    async getTopStories(): Promise<number[]> {
+        return await this._apiClient.getTopStories();
     }
 
     /**

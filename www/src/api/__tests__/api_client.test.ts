@@ -16,21 +16,10 @@ test("topStories should have length 500", async () => {
     expect(topStories.length).toBe(500);
 });
 
-test("topStories should be array of Story objects", async () => {
+test("topStories should be array of numbers", async () => {
     const topStories = await api.getTopStories();
-    const storyKeys = [
-        "id",
-        "by",
-        "descendants",
-        "kids",
-        "score",
-        "time",
-        "title",
-        "type",
-        "url",
-    ];
 
-    expect(Object.keys(topStories[0]).sort()).toEqual(storyKeys.sort());
+    expect(typeof topStories[0]).toBe("number");
 });
 /* #endregion */
 

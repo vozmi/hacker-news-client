@@ -42,7 +42,7 @@ export const hackernewsHandlers = [
         const data = [];
 
         for (const _ of Array(500).keys()) {
-            data.push(createMockStory());
+            data.push(MOCK_STORY_ID);
         }
 
         return res(ctx.json(data));

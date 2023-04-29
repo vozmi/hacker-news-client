@@ -20,7 +20,7 @@ export class ApiClient implements IApiClient {
      * Get top 500 stories
      * @returns array of 500 Story objects
      */
-    async getTopStories(): Promise<Story[]> {
+    async getTopStories(): Promise<number[]> {
         const response = await fetch(`${this.base}/topstories.json`);
         const data = await response.json();
         return data;
