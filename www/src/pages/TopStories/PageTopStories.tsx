@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import { StoryCardContainer } from "./components";
 import { Stack } from "@mui/material";
 import { range } from "@/lib/range";
+import styled from "@emotion/styled";
+
+const PageContent = styled.main`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 2rem;
+`;
 
 export const PageTopStories = () => {
     const [isLoading, setLoading] = useState(false);
@@ -30,7 +38,7 @@ export const PageTopStories = () => {
     }, []);
 
     return (
-        <div>
+        <PageContent>
             <Stack spacing={2}>
                 {isLoading ? (
                     <>
@@ -46,6 +54,6 @@ export const PageTopStories = () => {
                     </>
                 )}
             </Stack>
-        </div>
+        </PageContent>
     );
 };
