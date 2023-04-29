@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ApiClient } from "./api";
 import { appConfig } from "./app.config";
 import { ServicesContext } from "./contexts";
-import { StoriesList, Story } from "./pages";
+import { PageTopStories, Story } from "./pages";
 import { ApiAdapter, IApiAdapter } from "./services";
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
             <Routes>
                 <Route path="/stories">
                     <Route path=":id" element={<Story />} />
-                    <Route index element={<StoriesList />} />
+                    <Route index element={<PageTopStories />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/stories" />} />
             </Routes>
