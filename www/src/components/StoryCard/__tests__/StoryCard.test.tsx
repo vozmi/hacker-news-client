@@ -1,4 +1,4 @@
-import { renderInApp } from "@/lib/testUtils";
+import { renderWithRouter } from "@/lib/testUtils";
 import { Story } from "@/models";
 import { screen } from "@testing-library/react";
 import { StoryCard } from "../StoryCard";
@@ -16,7 +16,7 @@ const story: Story = {
 
 describe("StoryCard", () => {
     it("Should show main variables (title, author, commentsCount, score, createDate)", async () => {
-        renderInApp(<StoryCard data={story} />);
+        renderWithRouter(<StoryCard data={story} />);
 
         await screen.findByTestId("storycard");
 
