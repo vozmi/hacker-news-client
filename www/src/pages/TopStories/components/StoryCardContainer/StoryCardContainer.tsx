@@ -1,7 +1,6 @@
 import { StoryCard } from "@/components";
 import { useServices } from "@/contexts";
 import { Story } from "@/models";
-import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -32,15 +31,7 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
     }, []);
 
     if (isLoading || !data) {
-        return (
-            <Skeleton
-                aria-label="skeleton"
-                aria-busy="true"
-                aria-live="polite"
-                variant="rounded"
-                sx={{ maxWidth: 500, width: "100%", height: 76 }}
-            />
-        );
+        return <StoryCard.Skeleton />;
     }
 
     return <StoryCard data={data} />;
