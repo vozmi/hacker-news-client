@@ -3,7 +3,7 @@ import { ServicesContext } from "@/contexts";
 import { renderWithRouter } from "@/lib/testUtils";
 import { MOCK_SERVER_URL, MOCK_STORY_ID } from "@/mocks";
 import { ApiAdapter } from "@/services";
-import { queryByLabelText, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { StoryCardContainer } from "../StoryCardContainer";
 
 const mockApiAdapter = new ApiAdapter(new ApiClient({ base: MOCK_SERVER_URL }));
