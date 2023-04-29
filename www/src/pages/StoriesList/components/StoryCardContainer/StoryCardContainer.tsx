@@ -34,6 +34,9 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
     if (isLoading || !data) {
         return (
             <Skeleton
+                aria-label="skeleton"
+                aria-busy="true"
+                aria-live="polite"
                 variant="rounded"
                 sx={{ maxWidth: 500, width: "100%", height: 76 }}
             />
