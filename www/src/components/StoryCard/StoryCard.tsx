@@ -16,7 +16,7 @@ export const StoryCard: React.FC<Props> = ({ data }) => {
     return (
         <Card
             data-testid="storycard"
-            sx={{ maxWidth: 500, cursor: "pointer" }}
+            sx={{ maxWidth: 500, width: "100%", cursor: "pointer" }}
             onClick={goToStoryPage}
         >
             <CardContent>
