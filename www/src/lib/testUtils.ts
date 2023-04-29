@@ -3,7 +3,7 @@ import { MOCK_SERVER_URL } from "@/mocks";
 import { ApiAdapter } from "@/services";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 type RenderWithRouterOptions = {
     route?: string;
@@ -17,7 +17,7 @@ export const renderWithRouter = (
 
     return {
         user: userEvent.setup(),
-        ...render(component, { wrapper: HashRouter }),
+        ...render(component, { wrapper: BrowserRouter }),
     };
 };
 
