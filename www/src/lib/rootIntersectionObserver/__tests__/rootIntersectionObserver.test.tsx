@@ -5,6 +5,7 @@ import {
 import { render } from "@testing-library/react";
 import { observeRootIntersection } from "../rootIntersectionObserver";
 
+/* #region Mock values */
 const mockDomRectReadOnly: DOMRectReadOnly = {
     x: 0,
     y: 0,
@@ -26,8 +27,9 @@ const mockIntersectionEntry: IntersectionObserverEntry = {
     target: document.createElement("div"),
     time: 0,
 };
+/* #endregion */
 
-test("fires callback on interscetion", async () => {
+const renderTargetElement = () => {
     render(
         <div id="root" style={{ height: 500 }}>
             <div id="target" style={{ background: "green", marginTop: 1000 }}>
@@ -36,7 +38,11 @@ test("fires callback on interscetion", async () => {
         </div>
     );
 
-    const targetEl = document.getElementById("target") as HTMLDivElement;
+    return document.getElementById("target") as HTMLDivElement;
+};
+
+test("fires callback on interscetion", async () => {
+    const targetEl = renderTargetElement();
     expect(targetEl.style.background).toBe("green");
 
     const intersectionListener = (entry: IntersectionObserverEntry) => {
