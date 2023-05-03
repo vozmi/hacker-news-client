@@ -10,7 +10,15 @@ const mockApiAdapter = new ApiAdapter(new ApiClient({ base: MOCK_SERVER_URL }));
 
 const renderWithAdapter = (storyId: number) => {
     return renderWithRouter(
-        <ServicesContext.Provider value={{ apiAdapter: mockApiAdapter }}>
+        <ServicesContext.Provider
+            value={{
+                apiAdapter: mockApiAdapter,
+                rootIntersectionObserver: {
+                    observe: jest.fn(),
+                    dispose: jest.fn(),
+                },
+            }}
+        >
             <StoryCardContainer id={storyId} />
         </ServicesContext.Provider>
     );

@@ -1,6 +1,5 @@
 import { StoryCard } from "@/components";
 import { useServices } from "@/contexts";
-import { observeRootIntersection } from "@/lib/rootIntersectionObserver";
 import { Story } from "@/models";
 import { useEffect, useRef, useState } from "react";
 
@@ -13,7 +12,7 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
     const [data, setData] = useState<Story | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const { apiAdapter } = useServices();
+    const { apiAdapter, rootIntersectionObserver } = useServices();
 
     const getData = async () => {
         setLoading(true);
@@ -30,7 +29,7 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
     useEffect(() => {
         if (containerRef.current !== null) {
             // Observe current component
-            const disposeObserver = observeRootIntersection(
+            const disposeObserver = rootIntersectionObserver.observe(
                 containerRef.current,
                 async (entry) => {
                     if (entry.intersectionRatio > 0 && !data && !isLoading) {
