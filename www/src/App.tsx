@@ -5,6 +5,14 @@ import { appConfig } from "./app.config";
 import { ServicesContext } from "./contexts";
 import { PageTopStories, Story } from "./pages";
 import { ApiAdapter, IApiAdapter } from "./services";
+import { Sandbox } from "./Sandbox";
+import { createSharedIntersectionObserver } from "./lib/sharedIntersectionObserver";
+
+const rootIntersectionObserver = createSharedIntersectionObserver({
+    root: document.getElementById("root"),
+    rootMargin: "0px 0px 300px 0px",
+    threshold: [0, 0.25, 0.5, 0.75, 1],
+});
 
 const App = () => {
     const [apiAdapter, setApiAdapter] = useState<IApiAdapter>();
@@ -33,6 +41,7 @@ const App = () => {
         <ServicesContext.Provider
             value={{
                 apiAdapter,
+                rootIntersectionObserver,
             }}
         >
             <Routes>
