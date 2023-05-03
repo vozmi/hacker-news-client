@@ -1,32 +1,15 @@
-import MockIntersectionObserver, {
-    observe,
-} from "@/mocks/IntersectionObserver";
 import { render } from "@testing-library/react";
-import { observeRootIntersection } from "../sharedIntersectionObserver";
+import { createSharedIntersectionObserver } from "../sharedIntersectionObserver";
+import {
+    MockIntersectionObserverResult,
+    mockIntersectionObserver,
+} from "@/mocks/IntersectionObserver";
 
-/* #region Mock values */
-const mockDomRectReadOnly: DOMRectReadOnly = {
-    x: 0,
-    y: 0,
-    width: 100,
-    height: 100,
-    top: 0,
-    right: 100,
-    bottom: 100,
-    left: 0,
-    toJSON: jest.fn(),
-};
-
-const mockIntersectionEntry: IntersectionObserverEntry = {
-    isIntersecting: true,
-    boundingClientRect: mockDomRectReadOnly,
-    intersectionRatio: 0.25,
-    intersectionRect: mockDomRectReadOnly,
-    rootBounds: mockDomRectReadOnly,
-    target: document.createElement("div"),
-    time: 0,
-};
-/* #endregion */
+let MockIntersectionObserver: MockIntersectionObserverResult;
+beforeAll(() => {
+    MockIntersectionObserver = mockIntersectionObserver();
+});
+afterEach(() => MockIntersectionObserver.clearMocks());
 
 const renderTargetElement = () => {
     render(
@@ -40,52 +23,42 @@ const renderTargetElement = () => {
     return document.getElementById("target") as HTMLDivElement;
 };
 
-test("Callback passed to observeRootIntersection should be called", async () => {
+test("observe method should call IntersectionObserver.observe", async () => {
     const targetEl = renderTargetElement();
+
+    const sharedObserver = createSharedIntersectionObserver({
+        root: document.getElementById("root"),
+        rootMargin: "0px 0px 300px 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+    });
 
     const intersectionListener = jest.fn();
 
-    observeRootIntersection(targetEl, intersectionListener);
+    expect(MockIntersectionObserver.mocks.observe).toHaveBeenCalledTimes(0);
 
-    invokeIntersection();
-    expect(intersectionListener).toHaveBeenCalledTimes(1);
+    sharedObserver.observe(targetEl, intersectionListener);
 
-    invokeIntersection();
-    expect(intersectionListener).toHaveBeenCalledTimes(2);
+    expect(MockIntersectionObserver.mocks.observe).toHaveBeenCalledTimes(1);
+    expect(MockIntersectionObserver.mocks.observe).toHaveBeenCalledWith(
+        targetEl
+    );
 });
 
-test("Dispose from observeRootIntersection should remove callback from listeners", async () => {
+test("dispose method should call IntersectionObserver.unobserve", async () => {
     const targetEl = renderTargetElement();
+
+    const sharedObserver = createSharedIntersectionObserver({
+        root: document.getElementById("root"),
+        rootMargin: "0px 0px 300px 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+    });
 
     const intersectionListener = jest.fn();
 
-    const disposeObserver = observeRootIntersection(
-        targetEl,
-        intersectionListener
-    );
+    expect(MockIntersectionObserver.mocks.unobserve).toHaveBeenCalledTimes(0);
 
-    const invokeIntersection = () => {
-        const [callback] = MockIntersectionObserver.mock.calls[0] as Array<
-            (entries: IntersectionObserverEntry[]) => any
-        >;
+    const dispose = sharedObserver.observe(targetEl, intersectionListener);
+    dispose();
 
-        callback([
-            {
-                ...mockIntersectionEntry,
-                isIntersecting: true,
-                target: targetEl,
-            },
-        ]);
-    };
-
-    invokeIntersection();
-    expect(intersectionListener).toHaveBeenCalledTimes(1);
-
-    invokeIntersection();
-    expect(intersectionListener).toHaveBeenCalledTimes(2);
-
-    disposeObserver();
-
-    invokeIntersection();
-    expect(intersectionListener).toHaveBeenCalledTimes(2);
+    expect(MockIntersectionObserver.mocks.unobserve).toHaveBeenCalledTimes(1);
 });
