@@ -3,7 +3,7 @@ const unobserve = jest.fn();
 const disconnect = jest.fn();
 const takeRecords = jest.fn();
 
-const MockIntersectionObserver = jest.fn(() => ({
+const MockIntersectionObserver = jest.fn().mockImplementation(() => ({
     observe,
     unobserve,
     disconnect,
@@ -19,7 +19,7 @@ Object.defineProperty(window, "IntersectionObserver", {
 });
 
 export {
-    MockIntersectionObserver,
+    MockIntersectionObserver as default,
     observe,
     unobserve,
     disconnect,
