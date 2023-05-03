@@ -3,8 +3,16 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ApiClient } from "./api";
 import { appConfig } from "./app.config";
 import { ServicesContext } from "./contexts";
-import { StoriesList, Story } from "./pages";
+import { PageTopStories, Story } from "./pages";
 import { ApiAdapter, IApiAdapter } from "./services";
+import { Sandbox } from "./Sandbox";
+import { createSharedIntersectionObserver } from "./lib/sharedIntersectionObserver";
+
+const rootIntersectionObserver = createSharedIntersectionObserver({
+    root: document.getElementById("root"),
+    rootMargin: "0px 0px 300px 0px",
+    threshold: [0, 0.25, 0.5, 0.75, 1],
+});
 
 const App = () => {
     const [apiAdapter, setApiAdapter] = useState<IApiAdapter>();
@@ -33,12 +41,13 @@ const App = () => {
         <ServicesContext.Provider
             value={{
                 apiAdapter,
+                rootIntersectionObserver,
             }}
         >
             <Routes>
                 <Route path="/stories">
                     <Route path=":id" element={<Story />} />
-                    <Route index element={<StoriesList />} />
+                    <Route index element={<PageTopStories />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/stories" />} />
             </Routes>

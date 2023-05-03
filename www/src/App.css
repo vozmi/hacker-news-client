@@ -1,7 +1,14 @@
 body {
     margin: 0;
+    background: rgb(231, 235, 240);
 }
 
 * {
     box-sizing: border-box;
+}
+
+#root {
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
 }

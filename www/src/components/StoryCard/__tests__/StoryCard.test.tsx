@@ -21,56 +21,44 @@ const hnStory = {
 };
 const story = mapFromHNStory(hnStory);
 
-const TEST_IDS = {
-    STORYCARD: "storycard",
-};
+test("Should show main variables (title, author, commentsCount, score, createDate)", async () => {
+    renderWithRouter(<StoryCard data={story} />);
 
-describe("StoryCard", () => {
-    it("Should show main variables (title, author, commentsCount, score, createDate)", async () => {
-        renderWithRouter(<StoryCard data={story} />);
+    await screen.findByLabelText("story");
 
-        await screen.findByTestId(TEST_IDS.STORYCARD);
+    expect(screen.getByText(new RegExp(story.title, "i"))).toBeInTheDocument();
 
-        expect(
-            screen.getByText(new RegExp(story.title, "i"))
-        ).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(story.author, "i"))).toBeInTheDocument();
 
-        expect(
-            screen.getByText(new RegExp(story.author, "i"))
-        ).toBeInTheDocument();
+    expect(
+        screen.getByText(new RegExp(story.allCommentsCount + " comments", "i"))
+    ).toBeInTheDocument();
 
-        expect(
-            screen.getByText(
-                new RegExp(story.allCommentsCount + " comments", "i")
-            )
-        ).toBeInTheDocument();
+    expect(
+        screen.getByText(new RegExp(story.score + " points", "i"))
+    ).toBeInTheDocument();
 
-        expect(
-            screen.getByText(new RegExp(story.score + " points", "i"))
-        ).toBeInTheDocument();
+    expect(
+        screen.getByText(new RegExp(story.createDate, "i"))
+    ).toBeInTheDocument();
+});
 
-        expect(
-            screen.getByText(new RegExp(story.createDate, "i"))
-        ).toBeInTheDocument();
-    });
+test("Should contain link to story page", async () => {
+    const { user } = renderWithRouter(
+        <Routes>
+            <Route path="/stories">
+                <Route index element={<StoryCard data={story} />} />
+                <Route path=":id" element={<div>Story page</div>} />
+            </Route>
+        </Routes>,
+        {
+            route: "/stories",
+        }
+    );
 
-    it("Should contain link to story page", async () => {
-        const { user } = renderWithRouter(
-            <Routes>
-                <Route path="/stories">
-                    <Route index element={<StoryCard data={story} />} />
-                    <Route path=":id" element={<div>Story page</div>} />
-                </Route>
-            </Routes>,
-            {
-                route: "/stories",
-            }
-        );
+    const cardEl = await screen.findByLabelText("story");
 
-        const cardEl = await screen.findByTestId(TEST_IDS.STORYCARD);
+    await user.click(cardEl);
 
-        await user.click(cardEl);
-
-        expect(screen.getByText(/story page/i)).toBeInTheDocument();
-    });
+    expect(screen.getByText(/story page/i)).toBeInTheDocument();
 });

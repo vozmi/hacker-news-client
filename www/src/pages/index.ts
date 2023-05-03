@@ -1,2 +1,2 @@
 export * from "./Story";
-export * from "./StoriesList";
+export * from "./TopStories";

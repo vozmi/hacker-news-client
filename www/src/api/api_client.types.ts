@@ -37,7 +37,7 @@ export interface IApiClient {
     /**
      * Returns last 500 stories
      */
-    getTopStories(): Promise<Story[]>;
+    getTopStories(): Promise<number[]>;
 
     /**
      * Returns story by given id
