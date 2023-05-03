@@ -1,47 +1,52 @@
 import { v4 as uuidv4 } from "uuid";
 
-type EntryCallback = (entry: IntersectionObserverEntry) => void;
+type IntersectionObservable = (entry: IntersectionObserverEntry) => void;
+type Disposer = () => void;
 
-const observers = new Map<string, EntryCallback>();
+export const createSharedIntersectionObserver = (
+    options: IntersectionObserverInit
+) => {
+    const observables = new Map<string, IntersectionObservable>();
 
-const rootIntersectionObserver = new IntersectionObserver(
-    (entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             const entryId = entry.target.getAttribute("data-intersection-id");
             if (!entryId) {
                 return;
             }
 
-            const callback = observers.get(entryId);
+            const callback = observables.get(entryId);
             if (typeof callback === "function") {
                 callback(entry);
             }
         });
-    },
-    {
-        root: document.getElementById("root"),
-        rootMargin: "0px 0px 300px 0px",
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-    }
-);
+    }, options);
 
-export const observeRootIntersection = (
-    el: Element,
-    callback: EntryCallback
-) => {
-    const intersectionId = uuidv4();
+    const observe = (
+        el: Element,
+        callback: IntersectionObservable
+    ): Disposer => {
+        const intersectionId = uuidv4();
 
-    el.setAttribute("data-intersection-id", intersectionId);
+        el.setAttribute("data-intersection-id", intersectionId);
 
-    observers.set(intersectionId, callback);
+        observables.set(intersectionId, callback);
 
-    rootIntersectionObserver.observe(el);
+        observer.observe(el);
 
-    return function dispose() {
-        observers.delete(intersectionId);
+        return function dispose() {
+            observables.delete(intersectionId);
 
-        rootIntersectionObserver.unobserve(el);
+            observer.unobserve(el);
 
-        el.removeAttribute("data-intersection-id");
+            el.removeAttribute("data-intersection-id");
+        };
+    };
+
+    return {
+        observe,
+        dispose: () => {
+            observables.clear();
+        },
     };
 };
