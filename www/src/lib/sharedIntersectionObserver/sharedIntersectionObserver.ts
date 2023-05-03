@@ -1,12 +1,19 @@
 import { v4 as uuidv4 } from "uuid";
 
-type IntersectionObservable = (entry: IntersectionObserverEntry) => void;
-type Disposer = () => void;
+type ObservableCallback = (entry: IntersectionObserverEntry) => void;
+
+type Dispose = () => void;
+type Observe = (el: Element, callback: ObservableCallback) => Dispose;
+
+export type SharedIntersectionObserver = {
+    observe: Observe;
+    dispose: Dispose;
+};
 
 export const createSharedIntersectionObserver = (
     options: IntersectionObserverInit
-) => {
-    const observables = new Map<string, IntersectionObservable>();
+): SharedIntersectionObserver => {
+    const observables = new Map<string, ObservableCallback>();
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -22,10 +29,7 @@ export const createSharedIntersectionObserver = (
         });
     }, options);
 
-    const observe = (
-        el: Element,
-        callback: IntersectionObservable
-    ): Disposer => {
+    const observe: Observe = (el, callback) => {
         const intersectionId = uuidv4();
 
         el.setAttribute("data-intersection-id", intersectionId);
