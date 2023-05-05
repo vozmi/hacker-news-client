@@ -50,6 +50,11 @@ module.exports = {
                 include: /\.module\.css$/,
             },
             {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+                exclude: /\.module\.css$/,
+            },
+            {
                 test: /\.s(a|c)ss$/,
                 use: [
                     { loader: "style-loader" },
