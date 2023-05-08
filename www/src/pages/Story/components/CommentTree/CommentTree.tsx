@@ -50,7 +50,7 @@ export const CommentTree: React.FC<Props> = ({ id }) => {
     if (!data) {
         return (
             <div ref={skeletonRef}>
-                <Skeleton variant="rounded" />;
+                <Comment.Skeleton />
             </div>
         );
     }
