@@ -1,17 +1,18 @@
 import { Comment } from "@/components";
 import { useServices } from "@/contexts";
 import { type Comment as IComment } from "@/models";
-import { Collapse, Skeleton } from "@mui/material";
+import { Collapse } from "@mui/material";
 import { useEffect, useReducer, useRef, useState } from "react";
 import styles from "./CommentTree.module.scss";
 
 type Props = {
     id: number;
+    defaultOpen?: boolean;
 };
 
-export const CommentTree: React.FC<Props> = ({ id }) => {
+export const CommentTree: React.FC<Props> = ({ id, defaultOpen = false }) => {
     const [isLoading, setLoading] = useState(false);
-    const [isOpen, toggleOpen] = useReducer((x) => !x, false);
+    const [isOpen, toggleOpen] = useReducer((x) => !x, defaultOpen);
     const [data, setData] = useState<IComment>();
     const skeletonRef = useRef<HTMLDivElement>(null);
 
@@ -75,7 +76,7 @@ export const CommentTree: React.FC<Props> = ({ id }) => {
             {hasChildren && (
                 <Collapse in={isOpen} className={styles.childCommentList}>
                     {data.childrenIds.map((childId) => (
-                        <CommentTree key={childId} id={childId} />
+                        <CommentTree key={childId} id={childId} defaultOpen />
                     ))}
                 </Collapse>
             )}
