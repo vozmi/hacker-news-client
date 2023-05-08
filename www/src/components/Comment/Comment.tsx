@@ -1,32 +1,20 @@
 import { type Comment as IComment } from "@/models";
-import styled from "@emotion/styled";
 import { CSSProperties } from "react";
+import styles from "./Comment.module.scss";
 
 type Props = {
     data: IComment;
     style?: CSSProperties;
 };
 
-const Container = styled.div`
-    margin-bottom: 10px;
-`;
-
-const Header = styled.h5`
-    margin: 0 0 0.5rem 0;
-`;
-
-const Content = styled.p`
-    margin: 0;
-`;
-
 export const Comment: React.FC<Props> = ({
     data: { author, createDate, text },
     style,
 }) => {
     return (
-        <Container style={style} aria-label="comment">
-            <Header>{`${author} | ${createDate}`}</Header>
-            <Content>{text}</Content>
-        </Container>
+        <div style={style} className={styles.container} aria-label="comment">
+            <h5 className={styles.header}>{`${author} | ${createDate}`}</h5>
+            <p className={styles.content}>{text}</p>
+        </div>
     );
 };
