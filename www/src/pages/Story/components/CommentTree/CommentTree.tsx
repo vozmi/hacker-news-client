@@ -63,7 +63,8 @@ export const CommentTree: React.FC<Props> = ({ id, defaultOpen = false }) => {
                 <button className={styles.expandBtn} onClick={toggleOpen}>
                     {isOpen
                         ? "Hide replies"
-                        : `${data.childrenIds.length} replies`}
+                        : data.childrenIds.length +
+                          ` repl${data.childrenIds.length === 1 ? "y" : "ies"}`}
                 </button>
             )}
         </div>
