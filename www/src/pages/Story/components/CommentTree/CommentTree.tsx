@@ -76,7 +76,7 @@ export const CommentTree: React.FC<Props> = ({ id, defaultOpen = false }) => {
             {hasChildren && (
                 <Collapse in={isOpen} className={styles.childCommentList}>
                     {data.childrenIds.map((childId) => (
-                        <CommentTree key={childId} id={childId} defaultOpen />
+                        <CommentTree key={childId} id={childId} />
                     ))}
                 </Collapse>
             )}
