@@ -19,9 +19,9 @@ export const mapFromHNStory = (hnStory: HNStory): Story => {
         url: hnStory.url,
         score: hnStory.score,
         createDate:
-            new Date(hnStory.time).toLocaleDateString() +
+            new Date(hnStory.time * 1000).toLocaleDateString() +
             " at " +
-            new Date(hnStory.time).toLocaleTimeString(),
+            new Date(hnStory.time * 1000).toLocaleTimeString(),
         allCommentsCount: hnStory.descendants,
         childCommentIds: hnStory.kids,
     };
