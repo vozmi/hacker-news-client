@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
-import { CommentTree } from "./components";
+import { CommentTree, Header } from "./components";
 import { useEffect, useState } from "react";
 import { Story } from "@/models";
 import { useServices } from "@/contexts";
+import { Skeleton } from "@mui/material";
 
 export const PageStory = () => {
     const { id } = useParams();
@@ -17,6 +18,15 @@ export const PageStory = () => {
 
     return (
         <div>
+            {story ? (
+                <Header data={story} />
+            ) : (
+                <Skeleton
+                    variant="rectangular"
+                    sx={{ width: "100%", height: "3rem" }}
+                />
+            )}
+            <hr />
             {story?.childCommentIds &&
                 story.childCommentIds.map((id) => (
                     <CommentTree id={id} key={id} />
