@@ -52,9 +52,9 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
     }, []);
 
     return (
-        <div ref={containerRef} style={{ width: 500 }}>
+        <div ref={containerRef}>
             {isLoading || data === null ? (
-                <StoryCard.Skeleton />
+                <StoryCard.Skeleton sx={{ width: "500px" }} />
             ) : (
                 <StoryCard data={data} />
             )}

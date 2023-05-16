@@ -1,17 +1,9 @@
 import { StoryCard } from "@/components";
 import { range } from "@/lib/range";
-import styled from "@emotion/styled";
 import { Stack } from "@mui/material";
+import styles from "./PageTopStories.module.scss";
 import { StoryCardContainer } from "./components";
 import { useTopStories } from "./hooks";
-
-const PageContent = styled.main`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    padding-top: 2rem;
-`;
 
 export const PAGE_TOP_STORIES_ID = "page-top-stories";
 
@@ -19,7 +11,7 @@ export const PageTopStories = () => {
     const { isLoading, topStoriesIds } = useTopStories();
 
     return (
-        <PageContent id={PAGE_TOP_STORIES_ID}>
+        <main id={PAGE_TOP_STORIES_ID} className={styles.content}>
             <Stack spacing={2}>
                 {isLoading ? (
                     <>
@@ -35,6 +27,6 @@ export const PageTopStories = () => {
                     </>
                 )}
             </Stack>
-        </PageContent>
+        </main>
     );
 };
