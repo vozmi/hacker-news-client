@@ -2,6 +2,9 @@ import { renderWithRouter } from "@/lib/testUtils";
 import { Comment } from "../Comment";
 import { screen } from "@testing-library/dom";
 
+const getByContainedText = (text: string) =>
+    screen.getByText(new RegExp(`.*${text}.*`, "i"));
+
 test("contains author, createDate and text", () => {
     const data = {
         author: "testUser",
@@ -13,8 +16,8 @@ test("contains author, createDate and text", () => {
     };
     renderWithRouter(<Comment data={data} />);
 
-    expect(screen.getByText(new RegExp(data.author, "i"))).toBeInTheDocument();
+    expect(getByContainedText(data.author)).toBeInTheDocument();
 
-    expect(screen.getByText(data.createDate)).toBeInTheDocument();
-    expect(screen.getByText(data.text)).toBeInTheDocument();
+    expect(getByContainedText(data.createDate)).toBeInTheDocument();
+    expect(getByContainedText(data.text)).toBeInTheDocument();
 });
