@@ -11,7 +11,7 @@ export const PageTopStories = () => {
     const { isLoading, topStoriesIds } = useTopStories();
 
     return (
-        <main id={PAGE_TOP_STORIES_ID} className={styles.content}>
+        <div id={PAGE_TOP_STORIES_ID} className={styles.content}>
             <Stack spacing={2}>
                 {isLoading ? (
                     <>
@@ -27,6 +27,6 @@ export const PageTopStories = () => {
                     </>
                 )}
             </Stack>
-        </main>
+        </div>
     );
 };

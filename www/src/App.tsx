@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ApiClient } from "./api";
 import { appConfig } from "./app.config";
-import { ServicesContext } from "./contexts";
-import { PageTopStories, PageStory } from "./pages";
-import { ApiAdapter, IApiAdapter } from "./services";
-import { Sandbox } from "./Sandbox";
-import { createSharedIntersectionObserver } from "./lib/sharedIntersectionObserver";
 import { Layout } from "./components";
+import { ServicesContext } from "./contexts";
+import { createSharedIntersectionObserver } from "./lib/sharedIntersectionObserver";
+import { PageStory, PageTopStories } from "./pages";
+import { ApiAdapter, IApiAdapter } from "./services";
 
 const rootIntersectionObserver = createSharedIntersectionObserver({
     root: document.getElementById("root"),
@@ -51,7 +50,7 @@ const App = () => {
                         <Route path=":id" element={<PageStory />} />
                         <Route index element={<PageTopStories />} />
                     </Route>
-                    <Route path="*" element={<Navigate to="/stories" />} />
+                    <Route path="*" element={<PageTopStories />} />
                 </Routes>
             </Layout>
         </ServicesContext.Provider>
