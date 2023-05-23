@@ -1,0 +1,23 @@
+@import "../../Layout.variables.scss";
+
+.container {
+    display: flex;
+    align-items: center;
+    
+    height: $headerHeight;
+    padding: 16px 32px;
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    background: white;
+    font-weight: bold;
+
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.12);
+
+    h2 {
+        display: flex;
+        align-items: center;
+    }
+}

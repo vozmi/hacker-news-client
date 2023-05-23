@@ -7,6 +7,7 @@ import { PageTopStories, PageStory } from "./pages";
 import { ApiAdapter, IApiAdapter } from "./services";
 import { Sandbox } from "./Sandbox";
 import { createSharedIntersectionObserver } from "./lib/sharedIntersectionObserver";
+import { Layout } from "./components";
 
 const rootIntersectionObserver = createSharedIntersectionObserver({
     root: document.getElementById("root"),
@@ -44,13 +45,15 @@ const App = () => {
                 rootIntersectionObserver,
             }}
         >
-            <Routes>
-                <Route path="/stories">
-                    <Route path=":id" element={<PageStory />} />
-                    <Route index element={<PageTopStories />} />
-                </Route>
-                <Route path="*" element={<Navigate to="/stories" />} />
-            </Routes>
+            <Layout>
+                <Routes>
+                    <Route path="/stories">
+                        <Route path=":id" element={<PageStory />} />
+                        <Route index element={<PageTopStories />} />
+                    </Route>
+                    <Route path="*" element={<Navigate to="/stories" />} />
+                </Routes>
+            </Layout>
         </ServicesContext.Provider>
     );
 };
