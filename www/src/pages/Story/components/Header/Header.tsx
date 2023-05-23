@@ -24,8 +24,8 @@ export const Header: React.FC<Props> = ({ data }) => {
         >
             <Typography
                 aria-label="story-title"
-                variant="h5"
-                sx={{ cursor: "pointer" }}
+                variant="h4"
+                sx={{ cursor: "pointer", fontWeight: "bold" }}
                 onClick={clickHandler}
             >
                 {data.title} ({storyUrl.host})
