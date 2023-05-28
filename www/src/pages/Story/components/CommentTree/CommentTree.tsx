@@ -1,8 +1,9 @@
 import { Comment } from "@/components";
 import { useServices } from "@/contexts";
+import { useRootIntersection } from "@/hooks/useRootIntersection";
 import { type Comment as IComment } from "@/models";
 import { Collapse } from "@mui/material";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useReducer, useRef, useState } from "react";
 import styles from "./CommentTree.module.scss";
 
 type Props = {
@@ -16,7 +17,7 @@ export const CommentTree: React.FC<Props> = ({ id, defaultOpen = false }) => {
     const [data, setData] = useState<IComment>();
     const skeletonRef = useRef<HTMLDivElement>(null);
 
-    const { apiAdapter, rootIntersectionObserver } = useServices();
+    const { apiAdapter } = useServices();
 
     const hasChildren = data?.childrenIds && data.childrenIds.length > 0;
 
@@ -30,23 +31,12 @@ export const CommentTree: React.FC<Props> = ({ id, defaultOpen = false }) => {
         }
     };
 
-    useEffect(() => {
-        if (skeletonRef.current !== null) {
-            // Observe current component
-            const disposeObserver = rootIntersectionObserver.observe(
-                skeletonRef.current,
-                async (entry) => {
-                    if (entry.intersectionRatio > 0 && !data && !isLoading) {
-                        // Load data when intersects
-                        await getData();
-
-                        // Remove observer after loading data
-                        disposeObserver();
-                    }
-                }
-            );
+    useRootIntersection(skeletonRef, async (entry, dispose) => {
+        if (entry.intersectionRatio > 0 && !data && !isLoading) {
+            await getData();
+            dispose();
         }
-    }, [skeletonRef]);
+    });
 
     if (!data) {
         return (

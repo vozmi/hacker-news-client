@@ -25,22 +25,19 @@ export const useRootIntersection = (
     listener: IntersectionListener
 ) => {
     const { rootIntersectionObserver } = useServices();
-    const [dispose, setDispose] = useState<Dispose>(() => undefined);
 
     useEffect(() => {
         if (ref.current !== null) {
             // Observe element when ref exists
             const disposeObserver = rootIntersectionObserver.observe(
                 ref.current,
-                async (entry) => {
+                (entry) => {
+                    console.log("call listener", entry, disposeObserver);
+
                     // Notify listener
                     listener(entry, disposeObserver);
                 }
             );
-
-            setDispose(disposeObserver);
         }
     }, [ref]);
-
-    return dispose;
 };
