@@ -1,14 +1,24 @@
 import { Story } from "@/models";
-import { Typography } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
+import styles from "./Header.module.scss";
 
 type Props = {
     /**
      * Story data
      */
-    data: Story;
+    data?: Story;
 };
 
 export const Header: React.FC<Props> = ({ data }) => {
+    if (!data) {
+        return (
+            <Skeleton
+                variant="rectangular"
+                sx={{ width: "100%", height: "3rem" }}
+            />
+        );
+    }
+
     const clickHandler = () => {
         return window.open(data.url, "_blank")?.focus();
     };
@@ -16,12 +26,7 @@ export const Header: React.FC<Props> = ({ data }) => {
     const storyUrl = new URL(data.url);
 
     return (
-        <div
-            aria-label="story"
-            style={{
-                width: "100%",
-            }}
-        >
+        <div aria-label="story" className={styles.container}>
             <Typography
                 aria-label="story-title"
                 variant="h4"

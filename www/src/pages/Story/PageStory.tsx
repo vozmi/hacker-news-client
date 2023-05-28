@@ -19,14 +19,7 @@ export const PageStory = () => {
 
     return (
         <div className={styles.container}>
-            {story ? (
-                <Header data={story} />
-            ) : (
-                <Skeleton
-                    variant="rectangular"
-                    sx={{ width: "100%", height: "3rem" }}
-                />
-            )}
+            <Header data={story} />
             <hr />
             <Typography
                 sx={{
