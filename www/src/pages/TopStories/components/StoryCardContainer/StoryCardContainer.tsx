@@ -1,5 +1,6 @@
 import { StoryCard } from "@/components";
 import { useServices } from "@/contexts";
+import { useRootIntersection } from "@/hooks/useRootIntersection";
 import { Story } from "@/models";
 import { useEffect, useRef, useState } from "react";
 
@@ -26,23 +27,12 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
         }
     };
 
-    useEffect(() => {
-        if (containerRef.current !== null) {
-            // Observe current component
-            const disposeObserver = rootIntersectionObserver.observe(
-                containerRef.current,
-                async (entry) => {
-                    if (entry.intersectionRatio > 0 && !data && !isLoading) {
-                        // Load data when intersects
-                        await getData();
-
-                        // Remove observer after loading data
-                        disposeObserver();
-                    }
-                }
-            );
+    useRootIntersection(containerRef, async (entry, dispose) => {
+        if (entry.intersectionRatio > 0 && !data && !isLoading) {
+            await getData();
+            dispose();
         }
-    }, [containerRef]);
+    });
 
     useEffect(() => {
         return function cleanup() {

@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
-import { CommentTree, Header } from "./components";
-import { useEffect, useState } from "react";
-import { Story } from "@/models";
 import { useServices } from "@/contexts";
-import { Skeleton, Typography } from "@mui/material";
+import { Story } from "@/models";
+import { Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./PageStory.module.scss";
+import { CommentTree, Header } from "./components";
 
 export const PageStory = () => {
     const { id } = useParams();
@@ -19,14 +19,7 @@ export const PageStory = () => {
 
     return (
         <div className={styles.container}>
-            {story ? (
-                <Header data={story} />
-            ) : (
-                <Skeleton
-                    variant="rectangular"
-                    sx={{ width: "100%", height: "3rem" }}
-                />
-            )}
+            <Header data={story} />
             <hr />
             <Typography
                 sx={{
