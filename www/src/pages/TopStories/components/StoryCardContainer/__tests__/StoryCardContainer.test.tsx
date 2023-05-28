@@ -27,19 +27,19 @@ const renderWithAdapter = (storyId: number) => {
                 apiAdapter: mockApiAdapter,
                 rootIntersectionObserver: {
                     observe: (el, callback) => {
-                        callback({
-                            target: el,
-                            isIntersecting: true,
-                            intersectionRatio: 1,
-                            boundingClientRect: mockDomRect,
-                            intersectionRect: mockDomRect,
-                            rootBounds: mockDomRect,
-                            time: 1,
+                        setTimeout(() => {
+                            callback({
+                                target: el,
+                                isIntersecting: true,
+                                intersectionRatio: 1,
+                                boundingClientRect: mockDomRect,
+                                intersectionRect: mockDomRect,
+                                rootBounds: mockDomRect,
+                                time: 1,
+                            });
                         });
 
-                        return () => {
-                            // dispose
-                        };
+                        return jest.fn();
                     },
                     dispose: jest.fn(),
                 },
