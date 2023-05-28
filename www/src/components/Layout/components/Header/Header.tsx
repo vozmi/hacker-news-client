@@ -1,6 +1,6 @@
-import { WhatshotTwoTone } from "@mui/icons-material";
-import styles from "./Header.module.scss";
+import { Bolt } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import styles from "./Header.module.scss";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ export const Header = () => {
     return (
         <header className={styles.container}>
             <h2 aria-label="logo" onClick={goHome}>
-                <WhatshotTwoTone color="warning" />
+                <Bolt color="warning" />
                 <span>Hacker News</span>
             </h2>
         </header>
