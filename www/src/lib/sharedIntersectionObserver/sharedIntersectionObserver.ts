@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 
-type ObservableCallback = (entry: IntersectionObserverEntry) => void;
+export type ObservableCallback = (entry: IntersectionObserverEntry) => void;
 
-type Dispose = () => void;
-type Observe = (el: Element, callback: ObservableCallback) => Dispose;
+export type Dispose = () => void;
+export type Observe = (el: Element, callback: ObservableCallback) => Dispose;
 
 export type SharedIntersectionObserver = {
     observe: Observe;
