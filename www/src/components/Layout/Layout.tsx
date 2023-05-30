@@ -1,24 +1,27 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Layout.module.scss";
-import { Header } from "./components";
+import { Header, Navigation } from "./components";
 
 export const Layout: React.FC<{
     children?: string | JSX.Element | JSX.Element[];
 }> = ({ children }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const [isHeaderBlured, setHeaderBlured] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    const scrollToTop = () =>
+        ref.current?.scrollTo({ top: 0, behavior: "smooth" });
 
     const scrollEvListener = useCallback(() => {
         if (
-            !isHeaderBlured &&
+            !isScrolled &&
             ref.current?.scrollTop &&
             ref.current.scrollTop > 64
         ) {
-            setHeaderBlured(true);
+            setIsScrolled(true);
         } else {
-            setHeaderBlured(false);
+            setIsScrolled(false);
         }
-    }, [setHeaderBlured]);
+    }, [setIsScrolled]);
 
     useEffect(() => {
         ref.current?.addEventListener("scroll", scrollEvListener);
@@ -30,10 +33,11 @@ export const Layout: React.FC<{
 
     return (
         <div ref={ref} className={styles.container}>
-            <Header blured={isHeaderBlured} />
+            <Header blured={isScrolled} />
             <main id="layout-content" className={styles.content}>
                 {children}
             </main>
+            <Navigation visible={isScrolled} onClick={scrollToTop} />
         </div>
     );
 };
