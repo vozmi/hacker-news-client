@@ -32,8 +32,6 @@ export const useRootIntersection = (
             const disposeObserver = rootIntersectionObserver.observe(
                 ref.current,
                 (entry) => {
-                    console.log("call listener", entry, disposeObserver);
-
                     // Notify listener
                     listener(entry, disposeObserver);
                 }

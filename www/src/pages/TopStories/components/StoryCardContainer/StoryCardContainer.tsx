@@ -13,7 +13,7 @@ export const StoryCardContainer: React.FC<Props> = ({ id }) => {
     const [data, setData] = useState<Story | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const { apiAdapter, rootIntersectionObserver } = useServices();
+    const { apiAdapter } = useServices();
 
     const getData = async () => {
         setLoading(true);

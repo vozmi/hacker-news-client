@@ -6,20 +6,35 @@
     align-items: center;
     
     height: $headerHeight;
-    padding: 16px 32px;
+    padding: 16px 10px;
+
+    @media (min-device-width: 480px) {
+        padding: 16px 10%;
+    }
+
+    @media (min-device-width: 768px) {
+        padding: 16px 20%;
+    }
 
     position: sticky;
     top: 0;
     z-index: 10;
-
     background: $bg-color;
     font-weight: bold;
 
-    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.12);
+    transition-property: background, box-shadow;
+    transition-duration: .25s;
 
     h2 {
         display: flex;
         align-items: center;
         cursor: pointer;
     }
+}
+
+.blured {
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.12);
+    backdrop-filter: saturate(180%) blur(5px);
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    background: hsla(0,0%,100%,.8);
 }
