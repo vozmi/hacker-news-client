@@ -6,13 +6,17 @@ import "./App.scss";
 import ReactDOM from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import App from "./App";
+import { ThemeProvider } from "@mui/material";
+import { muiTheme } from "./theme";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 
 root.render(
-    <HashRouter>
-        <App />
-    </HashRouter>
+    <ThemeProvider theme={muiTheme}>
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </ThemeProvider>
 );
