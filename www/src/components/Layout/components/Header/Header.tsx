@@ -18,7 +18,7 @@ export const Header: React.FC<Props> = ({ blured = false }: Props) => {
             className={styles.container + (blured ? ` ${styles.blured}` : "")}
         >
             <h2 aria-label="logo" onClick={goHome}>
-                <Bolt color="warning" />
+                <Bolt color="primary" />
                 <span>Hacker News</span>
             </h2>
         </header>

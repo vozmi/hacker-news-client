@@ -1,5 +1,12 @@
+@import "variables";
+
 .container {
     position: absolute !important;
     bottom: 1rem;
     right: 1rem;
+
+    @media (min-width: $laptop-min-width) {
+        bottom: 2rem;
+        right: 2rem;
+    }
 }
