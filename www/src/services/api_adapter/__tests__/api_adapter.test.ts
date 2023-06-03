@@ -43,6 +43,8 @@ test("Story should contain required keys", async () => {
         "allCommentsCount",
         "childCommentIds",
         "createDate",
+        "content",
+        "isJob",
     ];
 
     expect(Object.keys(story).sort()).toEqual(storyKeys.sort());
