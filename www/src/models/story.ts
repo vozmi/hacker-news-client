@@ -2,7 +2,9 @@ import { type Story as HNStory } from "@/api";
 
 export type Story = {
     id: number;
+    isJob: boolean;
     title: string;
+    content?: string | null;
     url: string;
     author: string;
     score: number;
@@ -14,6 +16,8 @@ export type Story = {
 export const mapFromHNStory = (hnStory: HNStory): Story => {
     return {
         id: hnStory.id,
+        isJob: hnStory.type === "job",
+        content: hnStory.type === "job" ? hnStory.text : null,
         author: hnStory.by,
         title: hnStory.title,
         url: hnStory.url,

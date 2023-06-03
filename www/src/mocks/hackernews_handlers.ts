@@ -1,9 +1,5 @@
 import { Comment, Story } from "@/api";
-import {
-    MOCK_COMMENT_ID,
-    MOCK_SERVER_URL,
-    MOCK_STORY_ID,
-} from "@/constants";
+import { MOCK_COMMENT_ID, MOCK_SERVER_URL, MOCK_STORY_ID } from "@/constants";
 import { range } from "@/lib/range";
 import { rest } from "msw";
 

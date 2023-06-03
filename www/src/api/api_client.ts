@@ -45,7 +45,7 @@ export class ApiClient implements IApiClient {
     async getStory(id: number): Promise<Story> {
         const item = await this._getItem(id);
 
-        if (item.type !== "story") {
+        if (["story", "job"].indexOf(item.type) === -1) {
             throw new Error("Api Error: story with given id not found!");
         }
 

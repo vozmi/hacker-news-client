@@ -8,11 +8,11 @@
     height: $headerHeight;
     padding: 16px 10px;
 
-    @media (min-device-width: 480px) {
+    @media (min-device-width: $tablet-min-width) {
         padding: 16px 10%;
     }
 
-    @media (min-device-width: 768px) {
+    @media (min-device-width: $laptop-min-width) {
         padding: 16px 20%;
     }
 
