@@ -12,7 +12,7 @@ export const StoryCard: React.FC<Props> = ({ data }) => {
     const navigate = useNavigate();
 
     const goToStoryPage = () => {
-        navigate(`/stories/${data.id}`);
+        navigate(`/${data.isJob ? "jobs" : "stories"}/${data.id}`);
     };
 
     return (
@@ -27,13 +27,13 @@ export const StoryCard: React.FC<Props> = ({ data }) => {
                         <Work fontSize="small" color="primary" />
                     </div>
                 )}
-                <p className={styles.content__text}>
+                <div className={styles.content__text}>
                     <h4>{data.title}</h4>
                     <p>
                         {data.score} points | by {data.author} |{" "}
                         {data.createDate} | {data.allCommentsCount} comments
                     </p>
-                </p>
+                </div>
             </CardContent>
         </Card>
     );

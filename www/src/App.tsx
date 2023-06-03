@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ApiClient } from "./api";
 import { appConfig } from "./app.config";
 import { Layout } from "./components";
 import { ServicesContext } from "./contexts";
 import { createSharedIntersectionObserver } from "./lib/sharedIntersectionObserver";
-import { PageStory, PageTopStories } from "./pages";
+import { NotFound, PageStory, PageTopStories } from "./pages";
 import { ApiAdapter, IApiAdapter } from "./services";
 
 const rootIntersectionObserver = createSharedIntersectionObserver({
@@ -50,7 +50,8 @@ const App = () => {
                         <Route path=":id" element={<PageStory />} />
                         <Route index element={<PageTopStories />} />
                     </Route>
-                    <Route path="*" element={<PageTopStories />} />
+                    <Route path="/" element={<Navigate to="/stories" />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </Layout>
         </ServicesContext.Provider>
